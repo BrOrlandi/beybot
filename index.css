@@ -12,6 +12,8 @@ body {
 img {
   border-radius: 8px;
   margin: auto;
+  height: 300px;
+  max-height: 300px;
 }
 
 .alerts {
