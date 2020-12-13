@@ -47,6 +47,7 @@ const soundCommands = {
   },
   alert: {
     audio: new Audio('sons/alert.mp3'),
+    duration: 2,
   },
   jaaviseiquevaidarmerda: {
     audio: new Audio('sons/jaaviseiquevaidarmerda.mp3'),
