@@ -1,5 +1,6 @@
 /* Config */
-const twitchTvHandle = 'OrlandiBot';
+// const twitchTvHandle = 'OrlandiBot';
+const twitchTvHandle = 'BrOrlandi';
 const DEFAULT_DURATION = 10 * 1000; // 10 seconds
 
 /* DOM */
