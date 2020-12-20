@@ -4,7 +4,10 @@
   "description": "![beybot](https://user-images.githubusercontent.com/5713670/86497808-eb7e5f00-bd37-11ea-8cc4-4765e91d2065.png)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "client": "live-server"
   },
   "repository": {
     "type": "git",
@@ -19,6 +22,12 @@
   "devDependencies": {
     "eslint": "^7.15.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1"
+    "eslint-plugin-import": "^2.22.1",
+    "live-server": "^1.2.1"
+  },
+  "dependencies": {
+    "comfy.js": "^1.1.6",
+    "dotenv": "^8.2.0",
+    "iohook": "^0.7.2"
   }
 }
