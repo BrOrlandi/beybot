@@ -40,7 +40,7 @@ const showGif = async (gif, gifDelay) => {
 
 // <h1 class="text-shadows">${user + generateTitle[type]}</h1>
 function gifAlert({
-  gif, audio, duration, privateCommand, gifDelay,
+  gif, audio, duration, privateCommand, gifDelay, volume,
 }, allowedUser) {
   if (privateCommand && !allowedUser) {
     return;
@@ -49,6 +49,8 @@ function gifAlert({
   queue.add(async () => {
     audio.play();
     currentAudio = audio;
+    // eslint-disable-next-line no-param-reassign
+    audio.volume = volume ? volume / 100 : 1;
     if (gif) {
       showGif(gif, gifDelay);
     }
@@ -78,6 +80,7 @@ const soundCommands = {
   },
   sad: {
     audio: new Audio('sons/sad.mp3'),
+    volume: 70,
   },
   sadnaruto: {
     audio: new Audio('sons/sad-naruto.mp3'),
@@ -112,6 +115,7 @@ const soundCommands = {
     audio: new Audio('sons/tapegandofogo.mp3'),
     gif: 'gifs/tapegandofogo.gif',
     duration: 3,
+    volume: 40,
   },
   finishhim: {
     audio: new Audio('sons/finishhim.mp3'),
@@ -123,6 +127,7 @@ const soundCommands = {
     audio: new Audio('sons/run.mp3'),
     gif: 'gifs/run.gif',
     duration: 8,
+    volume: 50,
   },
   champions: {
     audio: new Audio('sons/champions.mp3'),
@@ -147,6 +152,11 @@ const soundCommands = {
     gif: 'gifs/acabou.gif',
     duration: 16,
     privateCommand: true,
+  },
+  emorreu: {
+    audio: new Audio('sons/emorreu.mp3'),
+    gif: 'gifs/emorreu.gif',
+    duration: 2,
   },
 
 };

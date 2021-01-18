@@ -11,6 +11,9 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
     !caixao !hmm !errou !alert !jaavisei
     !sad !sad2 !sadnaruto !cholamais
     !cevaimorre !tapegandofogo !run !wasted
+    !emorreu
+
+    (Mande sugestões no chat)
     `);
   }
 };
@@ -36,7 +39,7 @@ const keyMap = {
 };
 
 const dotKeyShortcutMap = {
-  71: '!caixao', // 7
+  71: '!emorreu', // 7
   72: '!hmm', // 8
   73: '!errou', // 9
   75: '!alert', // 4
