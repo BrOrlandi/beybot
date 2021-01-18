@@ -4,6 +4,7 @@ const ComfyJS = require('comfy.js');
 
 ComfyJS.Init(process.env.TWITCHUSER, process.env.OAUTH, 'BrOrlandi');
 
+// eslint-disable-next-line no-unused-vars
 ComfyJS.onCommand = (user, command, message, flags, extra) => {
   if (command === 'sons') {
     ComfyJS.Say(`Se liga nos sons: 
@@ -34,29 +35,75 @@ const keyMap = {
   82: '!caixaostart', // 0
 };
 
-const sendCommand = (command, keycode) => {
+const dotKeyShortcutMap = {
+  71: '!caixao', // 7
+  72: '!hmm', // 8
+  73: '!errou', // 9
+  75: '!alert', // 4
+  76: '!jaavisei', // 5
+  77: ['!sad', '!sad2', '!sadnaruto'], // 6
+  79: '!cholamais', // 1
+  80: '!cevaimorre', // 2
+  81: '!tapegandofogo', // 3
+  83: '!finishhim', // ,
+  3637: '!run', // /
+  74: '!stop', // -
+  55: '!acabou', // *
+  78: '!wasted', // +
+  82: '!caixaostart', // 0
+};
+
+const sendCommand = (command) => {
   if (!Array.isArray(command)) {
     console.log(command);
     ComfyJS.Say(command);
     return;
   }
 
-  const counter = commandsCounters[keycode] || 0;
-  commandsCounters[keycode] = counter + 1;
+  const counter = commandsCounters[command] || 0;
+  commandsCounters[command] = counter + 1;
 
   const commandToSend = command[counter % command.length];
   console.log(commandToSend);
   ComfyJS.Say(commandToSend);
 };
 
-ioHook.on('keydown', (event) => {
-  const { keycode } = event;
-  const command = keyMap[keycode];
+const playKeyCommand = (key) => {
+  const command = keyMap[key];
 
   if (command) {
-    sendCommand(command, keycode);
+    sendCommand(command);
   }
-  // console.log(keycode);
+};
+
+const playKeyShortcutCommand = (key) => {
+  const command = dotKeyShortcutMap[key];
+
+  if (command) {
+    sendCommand(command);
+  }
+};
+
+let usingShortcut = false;
+
+Object.keys(dotKeyShortcutMap).forEach((key) => {
+  ioHook.registerShortcut([0, key], (keysPressed) => {
+    usingShortcut = true;
+    playKeyShortcutCommand(keysPressed[1]);
+  }, () => {
+    usingShortcut = false;
+  });
+});
+
+Object.keys(keyMap).forEach((key) => {
+  ioHook.registerShortcut([key], (keysPressed) => {
+    if (usingShortcut) {
+      return;
+    }
+    playKeyCommand(keysPressed[0]);
+  }, () => {
+    usingShortcut = false;
+  });
 });
 
 ioHook.start();

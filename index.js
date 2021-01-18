@@ -19,9 +19,13 @@ const wait = async (duration) => new Promise((resolve) => {
 const stopCommand = () => {
   container.style.opacity = 0;
   container.innerHTML = '';
-  currentAudio.pause();
-  currentAudio.currentTime = 0;
-  durationResolve();
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+  }
+  if (durationResolve) {
+    durationResolve();
+  }
 };
 
 const showGif = async (gif, gifDelay) => {
@@ -55,6 +59,7 @@ function gifAlert({
       container.style.opacity = 0;
       container.innerHTML = '';
       audio.pause();
+      // eslint-disable-next-line no-param-reassign
       audio.currentTime = 0;
     }
   });
@@ -136,15 +141,24 @@ const soundCommands = {
     duration: 73,
     privateCommand: true,
   },
+
+  acabou: {
+    audio: new Audio('sons/acabou.mp3'),
+    gif: 'gifs/acabou.gif',
+    duration: 16,
+    privateCommand: true,
+  },
+
 };
 
-const playSoundCommand = (soundCommandConfig, allowedUser) => {
-  new gifAlert(soundCommandConfig, allowedUser);
-};
+const playSoundCommand = (soundCommandConfig, allowedUser) => (
+  gifAlert(soundCommandConfig, allowedUser)
+);
 
-const isAllowedUser = ({ broadcaster, mod }) => !mod || !broadcaster;
+const isAllowedUser = ({ broadcaster, mod }) => mod || broadcaster;
 
 ComfyJS.Init(twitchTvHandle);
+// eslint-disable-next-line no-unused-vars
 ComfyJS.onCommand = (user, command, message, flags, extra) => {
   console.log(`!${command} was typed in chat`);
   const soundCommandConfig = soundCommands[command];
@@ -165,10 +179,20 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
 
 const blipChatAudio = new Audio('sons/blip.mp3');
 
+let lastBlip = 0;
+const MINIMUM_BLIP_TIME = 60000;
+
 const playBlipChat = () => {
-  blipChatAudio.play();
+  const now = Date.now();
+  const diffTime = now - lastBlip;
+  lastBlip = now;
+
+  if (diffTime > MINIMUM_BLIP_TIME) {
+    blipChatAudio.play();
+  }
 };
 
+// eslint-disable-next-line no-unused-vars
 ComfyJS.onChat = (user, message, flags, self, extra) => {
   console.log(`${user}:`, message);
   if (user !== twitchTvHandle && user !== botName) {
