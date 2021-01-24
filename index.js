@@ -80,7 +80,7 @@ const soundCommands = {
   },
   sad: {
     audio: new Audio('sons/sad.mp3'),
-    volume: 70,
+    volume: 90,
   },
   sadnaruto: {
     audio: new Audio('sons/sad-naruto.mp3'),
@@ -157,6 +157,12 @@ const soundCommands = {
     audio: new Audio('sons/emorreu.mp3'),
     gif: 'gifs/emorreu.gif',
     duration: 2,
+  },
+  teamwork: {
+    audio: new Audio('sons/teamwork.mp3'),
+    gif: 'gifs/teamwork.gif',
+    duration: 7,
+    volume: 70,
   },
 
 };
