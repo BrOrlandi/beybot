@@ -162,7 +162,7 @@ const soundCommands = {
     audio: new Audio('sons/teamwork.mp3'),
     gif: 'gifs/teamwork.gif',
     duration: 7,
-    volume: 70,
+    volume: 60,
   },
 
 };
