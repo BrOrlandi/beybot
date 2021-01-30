@@ -6,16 +6,45 @@ ComfyJS.Init(process.env.TWITCHUSER, process.env.OAUTH, 'BrOrlandi');
 
 // eslint-disable-next-line no-unused-vars
 ComfyJS.onCommand = (user, command, message, flags, extra) => {
+  if (command === 'comandos') {
+    ComfyJS.Say(`
+    !discord
+    !warzone
+    !sons
+    `);
+    // !sonscorrida
+    return;
+  }
+
   if (command === 'sons') {
-    ComfyJS.Say(`Se liga nos sons: 
+    ComfyJS.Say(`Se liga nos sons:
     !caixao !hmm !errou !alert !jaavisei
     !sad !sad2 !sadnaruto !cholamais
     !cevaimorre !tapegandofogo !run !wasted
-    !emorreu !teamwork
-
-    (Mande sugestões no chat)
+    !emorreu !teamwork !xfiles !gas !thuglife
+    !memefinal !sexy !nogod !aiai !awshit
+    !missioncompleted !drift !ridin
     `);
+    return;
   }
+
+  // if (command === 'sonscorrida') {
+  //   ComfyJS.Say(`Sons para Corrida:
+  //     !drift !ridin
+  //   `);
+  //   return;
+  // }
+
+  if (command === 'discord') {
+    ComfyJS.Say('/me Cola no Discord: https://discord.com/invite/qJZyUvT');
+    return;
+  }
+
+  if (command === 'warzone') {
+    ComfyJS.Say('/me Me adiciona no Warzone: BrOrlandi#1984');
+  }
+
+  // console.log(`Nenhum comando: ${command}`);
 };
 
 const commandsCounters = {};

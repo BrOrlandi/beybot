@@ -162,7 +162,56 @@ const soundCommands = {
     audio: new Audio('sons/teamwork.mp3'),
     gif: 'gifs/teamwork.gif',
     duration: 7,
-    volume: 60,
+    volume: 40,
+  },
+  xfiles: {
+    audio: new Audio('sons/xfiles.mp3'),
+    duration: 8,
+  },
+  gas: {
+    audio: new Audio('sons/gas.mp3'),
+    duration: 2,
+  },
+  thuglife: {
+    audio: new Audio('sons/thuglife.mp3'),
+    duration: 5,
+    volume: 70,
+  },
+  drift: {
+    audio: new Audio('sons/drift.mp3'),
+    duration: 5,
+  },
+  ridin: {
+    audio: new Audio('sons/ridin.mp3'),
+    duration: 10,
+  },
+  memefinal: {
+    audio: new Audio('sons/memefinal.mp3'),
+    duration: 10,
+  },
+  sexy: {
+    audio: new Audio('sons/sexy.mp3'),
+    duration: 9,
+  },
+  nogod: {
+    audio: new Audio('sons/nogod.mp3'),
+    gif: 'gifs/nogod.gif',
+    duration: 9,
+  },
+  aiai: {
+    audio: new Audio('sons/aiai.mp3'),
+    gif: 'gifs/aiai.gif',
+    duration: 2,
+  },
+  awshit: {
+    audio: new Audio('sons/awshit.mp3'),
+    gif: 'gifs/awshit.gif',
+    duration: 3,
+  },
+  missioncompleted: {
+    audio: new Audio('sons/missioncompleted.mp3'),
+    gif: 'gifs/missioncompleted.gif',
+    duration: 7,
   },
 
 };
@@ -189,6 +238,20 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
   }
 
   if (command === 'stop' && isAllowedUser(flags)) {
+    stopCommand();
+  }
+};
+
+window.command = (command) => {
+  console.log(`!${command} was typed in chat`);
+  const soundCommandConfig = soundCommands[command];
+
+  if (soundCommandConfig) {
+    playSoundCommand(soundCommandConfig, true);
+    return;
+  }
+
+  if (command === 'stop') {
     stopCommand();
   }
 };
