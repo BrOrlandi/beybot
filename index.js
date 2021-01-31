@@ -32,8 +32,13 @@ const showGif = async (gif, gifDelay) => {
   if (gifDelay) {
     await wait(gifDelay * 1000);
   }
+  const image = new Image();
+  image.src = gif;
   container.innerHTML = `
-    <img src="${gif}" />
+    <img src="" />
+  `;
+  container.innerHTML = `
+    <img src="${image.src}" />
   `;
   container.style.opacity = 1;
 };
@@ -164,6 +169,7 @@ const soundCommands = {
     duration: 7,
     volume: 40,
   },
+
   xfiles: {
     audio: new Audio('sons/xfiles.mp3'),
     duration: 8,
@@ -212,6 +218,38 @@ const soundCommands = {
     audio: new Audio('sons/missioncompleted.mp3'),
     gif: 'gifs/missioncompleted.gif',
     duration: 7,
+  },
+  vitoria: {
+    audio: new Audio('sons/vitoria.mp3'),
+    gif: 'gifs/vitoria.gif',
+    duration: 11,
+  },
+  satanas: {
+    audio: new Audio('sons/satanas.mp3'),
+    gif: 'gifs/satanas.gif',
+    duration: 5,
+  },
+  quepena: {
+    audio: new Audio('sons/quepena.mp3'),
+    gif: 'gifs/quepena.gif',
+    duration: 2,
+    volume: 80,
+  },
+  berg: {
+    audio: new Audio('sons/berg.mp3'),
+    gif: 'gifs/berg.gif',
+    duration: 10,
+    volume: 80,
+  },
+  // rojao: {
+  //   audio: new Audio('sons/rojao.mp3'),
+  //   gif: 'gifs/rojao.gif', // TODO
+  //   duration: 5,
+  // },
+  moises: {
+    audio: new Audio('sons/moises.mp3'),
+    gif: 'gifs/moises.gif',
+    duration: 4,
   },
 
 };
