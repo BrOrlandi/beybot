@@ -248,6 +248,11 @@ const soundCommands = {
     gif: 'gifs/moises.gif',
     duration: 4,
   },
+  surprise: {
+    audio: new Audio('sons/surprise.mp3'),
+    gif: 'gifs/surprise.gif',
+    duration: 2,
+  },
 
 };
 

@@ -27,7 +27,7 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
     !cevaimorre !tapegandofogo !run !wasted
     !emorreu !teamwork !xfiles !gas !thuglife
     !memefinal !sexy !nogod !aiai !awshit
-    !missioncompleted !quepena !berg !moises
+    !missioncompleted !quepena !berg !moises !surprise
     `);
     return;
   }
