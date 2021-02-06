@@ -45,12 +45,8 @@ const showGif = async (gif, gifDelay) => {
 
 // <h1 class="text-shadows">${user + generateTitle[type]}</h1>
 function gifAlert({
-  gif, audio, duration, privateCommand, gifDelay, volume,
-}, allowedUser) {
-  if (privateCommand && !allowedUser) {
-    return;
-  }
-
+  gif, audio, duration, gifDelay, volume,
+}) {
   queue.add(async () => {
     audio.play();
     currentAudio = audio;
@@ -241,11 +237,12 @@ const soundCommands = {
     duration: 10,
     volume: 80,
   },
-  // rojao: {
-  //   audio: new Audio('sons/rojao.mp3'),
-  //   gif: 'gifs/rojao.gif', // TODO
-  //   duration: 5,
-  // },
+  rojao: {
+    audio: new Audio('sons/rojao.mp3'),
+    // gif: 'gifs/rojao.gif', // TODO
+    duration: 5,
+    rewardCommand: true,
+  },
   moises: {
     audio: new Audio('sons/moises.mp3'),
     gif: 'gifs/moises.gif',
@@ -254,9 +251,19 @@ const soundCommands = {
 
 };
 
-const playSoundCommand = (soundCommandConfig, allowedUser) => (
-  gifAlert(soundCommandConfig, allowedUser)
-);
+const playSoundCommand = (soundCommandConfig, allowedUser, user) => {
+  const { privateCommand, rewardCommand } = soundCommandConfig;
+
+  if (privateCommand && !allowedUser) {
+    return;
+  }
+
+  if (rewardCommand && user !== twitchTvHandle && user !== botName) {
+    return;
+  }
+
+  gifAlert(soundCommandConfig, allowedUser);
+};
 
 const isAllowedUser = ({ broadcaster, mod }) => mod || broadcaster;
 
@@ -271,7 +278,7 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
   }
 
   if (soundCommandConfig) {
-    playSoundCommand(soundCommandConfig, isAllowedUser(flags));
+    playSoundCommand(soundCommandConfig, isAllowedUser(flags), user);
     return;
   }
 
@@ -281,7 +288,7 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
 };
 
 window.command = (command) => {
-  console.log(`!${command} was typed in chat`);
+  console.log(`!${command} was called in window`);
   const soundCommandConfig = soundCommands[command];
 
   if (soundCommandConfig) {
@@ -296,13 +303,13 @@ window.command = (command) => {
 
 const blipChatAudio = new Audio('sons/blip.mp3');
 
-let lastBlip = 0;
+let lastMessageDate = 0;
 const MINIMUM_BLIP_TIME = 60000;
 
 const playBlipChat = () => {
   const now = Date.now();
-  const diffTime = now - lastBlip;
-  lastBlip = now;
+  const diffTime = now - lastMessageDate;
+  lastMessageDate = now;
 
   if (diffTime > MINIMUM_BLIP_TIME) {
     blipChatAudio.play();
@@ -312,7 +319,12 @@ const playBlipChat = () => {
 // eslint-disable-next-line no-unused-vars
 ComfyJS.onChat = (user, message, flags, self, extra) => {
   console.log(`${user}:`, message);
-  if (user !== twitchTvHandle && user !== botName) {
+  if (
+    user !== twitchTvHandle
+    && user !== botName
+    && user !== 'StreamElements'
+    && user !== 'StreamLabs'
+  ) {
     playBlipChat();
   }
 };
