@@ -9,4 +9,12 @@ ComfyJS.onReward = (user, reward, cost) => {
   if (reward === 'Rojão MUITO ALTO') {
     ComfyJS.Say('!rojao');
   }
+
+  if (reward === 'Yeaaahh') {
+    ComfyJS.Say('!yeah');
+  }
+
+  if (reward === 'IT\'S JOHN CENA!') {
+    ComfyJS.Say('!johncena');
+  }
 };

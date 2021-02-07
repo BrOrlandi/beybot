@@ -8,7 +8,9 @@
     "start-server": "node server.js",
     "start-rewards": "node rewards.js",
     "start": "concurrently --kill-others \"npm run start-server\" \"npm run start-rewards\"",
-    "dev": "nodemon server.js",
+    "dev": "concurrently --kill-others \"npm run dev-server\" \"npm run dev-rewards\"",
+    "dev-server": "nodemon server.js",
+    "dev-rewards": "nodemon rewards.js",
     "client": "live-server"
   },
   "repository": {

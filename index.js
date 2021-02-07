@@ -253,6 +253,23 @@ const soundCommands = {
     gif: 'gifs/surprise.gif',
     duration: 1.5,
   },
+  yeah: {
+    audio: new Audio('sons/yeah.mp3'),
+    // gif: 'gifs/yeah.gif', // TODO
+    duration: 5,
+    rewardCommand: true,
+  },
+  turndown: {
+    audio: new Audio('sons/turndown.mp3'),
+    gif: 'gifs/turndown.gif',
+    duration: 5,
+  },
+  johncena: {
+    audio: new Audio('sons/johncena.mp3'),
+    gif: 'gifs/johncena.gif',
+    duration: 11,
+    rewardCommand: true,
+  },
 
 };
 

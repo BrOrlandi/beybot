@@ -9,6 +9,10 @@ body {
   overflow: hidden;
 }
 
+iframe {
+  border: none;
+}
+
 img {
   border-radius: 8px;
   margin: auto;
