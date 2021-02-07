@@ -99,7 +99,7 @@ const keyMap1 = {
   79: '!moises', // 1
   80: '!cevaimorre', // 2
   81: '!tapegandofogo', // 3
-  83: '!finishhim', // ,
+  83: '!surprise', // ,
   3637: '!rojao', // /
   74: '!stop', // -
   55: '!champions', // *

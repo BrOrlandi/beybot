@@ -251,7 +251,7 @@ const soundCommands = {
   surprise: {
     audio: new Audio('sons/surprise.mp3'),
     gif: 'gifs/surprise.gif',
-    duration: 2,
+    duration: 1.5,
   },
 
 };
