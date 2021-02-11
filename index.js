@@ -48,10 +48,12 @@ function gifAlert({
   gif, audio, duration, gifDelay, volume,
 }) {
   queue.add(async () => {
-    audio.play();
-    currentAudio = audio;
-    // eslint-disable-next-line no-param-reassign
-    audio.volume = volume ? volume / 100 : 1;
+    if (audio) {
+      audio.play();
+      currentAudio = audio;
+      // eslint-disable-next-line no-param-reassign
+      audio.volume = volume ? volume / 100 : 1;
+    }
     if (gif) {
       showGif(gif, gifDelay);
     }
@@ -61,9 +63,11 @@ function gifAlert({
     if (!queue.isLooping) {
       container.style.opacity = 0;
       container.innerHTML = '';
-      audio.pause();
-      // eslint-disable-next-line no-param-reassign
-      audio.currentTime = 0;
+      if (audio) {
+        audio.pause();
+        // eslint-disable-next-line no-param-reassign
+        audio.currentTime = 0;
+      }
     }
   });
 }
@@ -268,6 +272,16 @@ const soundCommands = {
     audio: new Audio('sons/johncena.mp3'),
     gif: 'gifs/johncena.gif',
     duration: 11,
+    rewardCommand: true,
+  },
+  apagaluz: {
+    gif: 'gifs/apagaluz.gif',
+    duration: 2.4,
+    rewardCommand: true,
+  },
+  piscaluz: {
+    gif: 'gifs/piscaluz.gif',
+    duration: 6,
     rewardCommand: true,
   },
 
