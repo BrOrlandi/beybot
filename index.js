@@ -49,10 +49,10 @@ function gifAlert({
 }) {
   queue.add(async () => {
     if (audio) {
-      audio.play();
-      currentAudio = audio;
+      currentAudio = new Audio(audio);
+      currentAudio.play();
       // eslint-disable-next-line no-param-reassign
-      audio.volume = volume ? volume / 100 : 1;
+      currentAudio.volume = volume ? volume / 100 : 1;
     }
     if (gif) {
       showGif(gif, gifDelay);
@@ -63,10 +63,10 @@ function gifAlert({
     if (!queue.isLooping) {
       container.style.opacity = 0;
       container.innerHTML = '';
-      if (audio) {
-        audio.pause();
+      if (currentAudio) {
+        currentAudio.pause();
         // eslint-disable-next-line no-param-reassign
-        audio.currentTime = 0;
+        currentAudio.currentTime = 0;
       }
     }
   });
@@ -74,202 +74,203 @@ function gifAlert({
 
 const soundCommands = {
   caixao: {
-    audio: new Audio('sons/caixao.mp3'),
+    audio: 'sons/caixao.mp3',
     gif: 'gifs/caixao.gif',
     duration: 8,
   },
   errou: {
-    audio: new Audio('sons/errou.mp3'),
+    audio: 'sons/errou.mp3',
     gif: 'gifs/errou.gif',
     duration: 1.45,
   },
   sad: {
-    audio: new Audio('sons/sad.mp3'),
+    audio: 'sons/sad.mp3',
     volume: 90,
   },
   sadnaruto: {
-    audio: new Audio('sons/sad-naruto.mp3'),
+    audio: 'sons/sad-naruto.mp3',
   },
   sad2: {
-    audio: new Audio('sons/sad-violin.mp3'),
+    audio: 'sons/sad-violin.mp3',
   },
   alert: {
-    audio: new Audio('sons/alert.mp3'),
+    audio: 'sons/alert.mp3',
     duration: 2,
   },
   jaavisei: {
-    audio: new Audio('sons/jaavisei.mp3'),
+    audio: 'sons/jaavisei.mp3',
     gif: 'gifs/jaavisei.gif',
     duration: 2,
   },
   hmm: {
-    audio: new Audio('sons/hmm.mp3'),
+    audio: 'sons/hmm.mp3',
     gif: 'gifs/hmm.gif',
     duration: 1,
   },
   cholamais: {
-    audio: new Audio('sons/cholamais.mp3'),
+    audio: 'sons/cholamais.mp3',
     gif: 'gifs/cholamais.gif',
     duration: 10,
   },
   cevaimorre: {
-    audio: new Audio('sons/cevaimorre.mp3'),
+    audio: 'sons/cevaimorre.mp3',
     duration: 1,
   },
   tapegandofogo: {
-    audio: new Audio('sons/tapegandofogo.mp3'),
+    audio: 'sons/tapegandofogo.mp3',
     gif: 'gifs/tapegandofogo.gif',
     duration: 3,
     volume: 40,
   },
   finishhim: {
-    audio: new Audio('sons/finishhim.mp3'),
+    audio: 'sons/finishhim.mp3',
     gif: 'gifs/finishhim.gif',
     duration: 2,
     privateCommand: true,
   },
   run: {
-    audio: new Audio('sons/run.mp3'),
+    audio: 'sons/run.mp3',
     gif: 'gifs/run.gif',
     duration: 8,
     volume: 50,
   },
   champions: {
-    audio: new Audio('sons/champions.mp3'),
+    audio: 'sons/champions.mp3',
     duration: 40,
     privateCommand: true,
   },
   wasted: {
-    audio: new Audio('sons/wasted.mp3'),
+    audio: 'sons/wasted.mp3',
     gif: 'gifs/wasted.png',
     duration: 5,
     gifDelay: 2.5,
   },
   caixaostart: {
-    audio: new Audio('sons/caixaostart.mp3'),
+    audio: 'sons/caixaostart.mp3',
     gif: 'gifs/caixaostart.gif',
     duration: 73,
     privateCommand: true,
   },
 
   acabou: {
-    audio: new Audio('sons/acabou.mp3'),
+    audio: 'sons/acabou.mp3',
     gif: 'gifs/acabou.gif',
     duration: 16,
     privateCommand: true,
   },
   emorreu: {
-    audio: new Audio('sons/emorreu.mp3'),
+    audio: 'sons/emorreu.mp3',
     gif: 'gifs/emorreu.gif',
     duration: 2,
   },
   teamwork: {
-    audio: new Audio('sons/teamwork.mp3'),
+    audio: 'sons/teamwork.mp3',
     gif: 'gifs/teamwork.gif',
     duration: 7,
     volume: 40,
   },
 
   xfiles: {
-    audio: new Audio('sons/xfiles.mp3'),
+    audio: 'sons/xfiles.mp3',
     duration: 8,
   },
   gas: {
-    audio: new Audio('sons/gas.mp3'),
+    audio: 'sons/gas.mp3',
     duration: 2,
+    volume: 40,
   },
   thuglife: {
-    audio: new Audio('sons/thuglife.mp3'),
+    audio: 'sons/thuglife.mp3',
     duration: 5,
     volume: 70,
   },
   drift: {
-    audio: new Audio('sons/drift.mp3'),
+    audio: 'sons/drift.mp3',
     duration: 5,
   },
   ridin: {
-    audio: new Audio('sons/ridin.mp3'),
+    audio: 'sons/ridin.mp3',
     duration: 10,
   },
   memefinal: {
-    audio: new Audio('sons/memefinal.mp3'),
+    audio: 'sons/memefinal.mp3',
     duration: 10,
   },
   sexy: {
-    audio: new Audio('sons/sexy.mp3'),
+    audio: 'sons/sexy.mp3',
     duration: 9,
   },
   nogod: {
-    audio: new Audio('sons/nogod.mp3'),
+    audio: 'sons/nogod.mp3',
     gif: 'gifs/nogod.gif',
     duration: 9,
   },
   aiai: {
-    audio: new Audio('sons/aiai.mp3'),
+    audio: 'sons/aiai.mp3',
     gif: 'gifs/aiai.gif',
     duration: 2,
   },
   awshit: {
-    audio: new Audio('sons/awshit.mp3'),
+    audio: 'sons/awshit.mp3',
     gif: 'gifs/awshit.gif',
     duration: 3,
   },
   missioncompleted: {
-    audio: new Audio('sons/missioncompleted.mp3'),
+    audio: 'sons/missioncompleted.mp3',
     gif: 'gifs/missioncompleted.gif',
     duration: 7,
   },
   vitoria: {
-    audio: new Audio('sons/vitoria.mp3'),
+    audio: 'sons/vitoria.mp3',
     gif: 'gifs/vitoria.gif',
     duration: 11,
   },
   satanas: {
-    audio: new Audio('sons/satanas.mp3'),
+    audio: 'sons/satanas.mp3',
     gif: 'gifs/satanas.gif',
     duration: 5,
   },
   quepena: {
-    audio: new Audio('sons/quepena.mp3'),
+    audio: 'sons/quepena.mp3',
     gif: 'gifs/quepena.gif',
     duration: 2,
     volume: 80,
   },
   berg: {
-    audio: new Audio('sons/berg.mp3'),
+    audio: 'sons/berg.mp3',
     gif: 'gifs/berg.gif',
     duration: 10,
     volume: 80,
   },
   rojao: {
-    audio: new Audio('sons/rojao.mp3'),
+    audio: 'sons/rojao.mp3',
     // gif: 'gifs/rojao.gif', // TODO
     duration: 5,
     rewardCommand: true,
   },
   moises: {
-    audio: new Audio('sons/moises.mp3'),
+    audio: 'sons/moises.mp3',
     gif: 'gifs/moises.gif',
     duration: 4,
   },
   surprise: {
-    audio: new Audio('sons/surprise.mp3'),
+    audio: 'sons/surprise.mp3',
     gif: 'gifs/surprise.gif',
     duration: 1.5,
   },
   yeah: {
-    audio: new Audio('sons/yeah.mp3'),
+    audio: 'sons/yeah.mp3',
     // gif: 'gifs/yeah.gif', // TODO
     duration: 5,
     rewardCommand: true,
   },
   turndown: {
-    audio: new Audio('sons/turndown.mp3'),
+    audio: 'sons/turndown.mp3',
     gif: 'gifs/turndown.gif',
     duration: 5,
   },
   johncena: {
-    audio: new Audio('sons/johncena.mp3'),
+    audio: 'sons/johncena.mp3',
     gif: 'gifs/johncena.gif',
     duration: 11,
     rewardCommand: true,
@@ -337,10 +338,8 @@ window.command = (command) => {
   }
 };
 
-const blipChatAudio = new Audio('sons/blip.mp3');
-
 let lastMessageDate = 0;
-const MINIMUM_BLIP_TIME = 60000;
+const MINIMUM_BLIP_TIME = 90000;
 
 const playBlipChat = () => {
   const now = Date.now();
@@ -348,6 +347,7 @@ const playBlipChat = () => {
   lastMessageDate = now;
 
   if (diffTime > MINIMUM_BLIP_TIME) {
+    const blipChatAudio = new Audio('sons/blip.mp3');
     blipChatAudio.play();
   }
 };
@@ -360,6 +360,7 @@ ComfyJS.onChat = (user, message, flags, self, extra) => {
     && user !== botName
     && user !== 'StreamElements'
     && user !== 'StreamLabs'
+    && user !== 'streamholics'
   ) {
     playBlipChat();
   }

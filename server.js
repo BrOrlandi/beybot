@@ -121,7 +121,7 @@ const dotKeyShortcutMap1 = {
   3637: '!vitoria', // /
   74: '!stop', // -
   55: '!acabou', // *
-  78: '!missioncompleted', // +
+  78: '!sexy', // +
   82: '!awshit', // 0
 };
 
