@@ -285,6 +285,16 @@ const soundCommands = {
     duration: 6,
     rewardCommand: true,
   },
+  burro: {
+    audio: 'sons/burro.mp3',
+    gif: 'gifs/burro.gif',
+    duration: 10,
+  },
+  aiqueburro: {
+    audio: 'sons/aiqueburro.mp3',
+    gif: 'gifs/aiqueburro.gif',
+    duration: 3,
+  },
 
 };
 
