@@ -6,6 +6,8 @@ const DEFAULT_DURATION = 10 * 1000; // 10 seconds
 
 /* DOM */
 const container = document.querySelector('.alerts');
+const videoContainer = document.querySelector('#video-container');
+
 const queue = new Queue();
 let currentAudio;
 let durationResolve;
@@ -177,7 +179,7 @@ const soundCommands = {
   gas: {
     audio: 'sons/gas.mp3',
     duration: 2,
-    volume: 40,
+    volume: 70,
   },
   thuglife: {
     audio: 'sons/thuglife.mp3',
@@ -314,6 +316,27 @@ const playSoundCommand = (soundCommandConfig, allowedUser, user) => {
 
 const isAllowedUser = ({ broadcaster, mod }) => mod || broadcaster;
 
+const stopVideo = () => {
+  videoContainer.style.opacity = 0;
+  setTimeout(() => {
+    videoContainer.innerHTML = '';
+  }, 1000);
+};
+
+const playVideo = () => {
+  videoContainer.innerHTML = '';
+  videoContainer.innerHTML = `
+    <video autoplay>
+      <source src="./videos/CovidLovers.mp4" type="video/mp4">
+    </video>
+  `;
+  videoContainer.style.opacity = 1;
+
+  setTimeout(() => {
+    stopVideo();
+  }, 57000);
+};
+
 ComfyJS.Init(twitchTvHandle);
 // eslint-disable-next-line no-unused-vars
 ComfyJS.onCommand = (user, command, message, flags, extra) => {
@@ -331,6 +354,11 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
 
   if (command === 'stop' && isAllowedUser(flags)) {
     stopCommand();
+    stopVideo();
+  }
+
+  if (command === 'covid' && isAllowedUser(flags)) {
+    playVideo();
   }
 };
 
@@ -345,6 +373,11 @@ window.command = (command) => {
 
   if (command === 'stop') {
     stopCommand();
+    stopVideo();
+  }
+
+  if (command === 'covid') {
+    playVideo();
   }
 };
 

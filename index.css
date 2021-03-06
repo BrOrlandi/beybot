@@ -145,3 +145,17 @@ img {
   }
 }
 
+#video-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+#video-container > video {
+  height: 480px;
+}

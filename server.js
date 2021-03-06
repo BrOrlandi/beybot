@@ -13,7 +13,7 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
     ComfyJS.Say(`
     !discord
     !warzone
-    !battlenet
+    !cod
     !sons
     !sonscorrida
     `);
@@ -45,8 +45,12 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
     return;
   }
 
-  if (command === 'warzone' || command === 'battlenet') {
-    ComfyJS.Say('/me Me adiciona no Warzone: BrOrlandi#1984');
+  if (command === 'warzone' || command === 'cod') {
+    ComfyJS.Say('/me Me adiciona no Warzone: BrOrlandi#5802032');
+  }
+
+  if (command === 'covid') {
+    ComfyJS.Say('/me Pessoal não esqueçam de se proteger da COVID-19 nesta pandemia! Se cuidem!');
   }
 
   // console.log(`Nenhum comando: ${command}`);
@@ -99,7 +103,7 @@ const keyMap1 = {
   77: ['!sad', '!sad2', '!sadnaruto'], // 6
   79: '!moises', // 1
   80: '!cevaimorre', // 2
-  81: '!tapegandofogo', // 3
+  81: '!burro', // 3
   83: '!surprise', // ,
   3637: '!rojao', // /
   74: '!stop', // -
@@ -117,7 +121,7 @@ const dotKeyShortcutMap1 = {
   77: '!memefinal', // 6
   79: '!thuglife', // 1
   80: '!aiai', // 2
-  81: '!nogod', // 3
+  81: '!aiqueburro', // 3
   83: '!satanas', // ,
   3637: '!vitoria', // /
   74: '!stop', // -
