@@ -264,7 +264,7 @@ const soundCommands = {
     audio: 'sons/yeah.mp3',
     // gif: 'gifs/yeah.gif', // TODO
     duration: 5,
-    rewardCommand: true,
+    volume: 80,
   },
   turndown: {
     audio: 'sons/turndown.mp3',
