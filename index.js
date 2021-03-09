@@ -323,7 +323,10 @@ const soundCommands = {
     gif: 'gifs/aiqueburro.gif',
     duration: 3,
   },
-
+  missaoimpossivel: {
+    audio: 'sons/missaoimpossivel.mp3',
+    duration: 16,
+  },
 };
 
 const playSoundCommand = (soundCommandConfig, allowedUser, user) => {
