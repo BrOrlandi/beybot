@@ -47,25 +47,49 @@ const showGif = async (gif, gifDelay) => {
 
 // <h1 class="text-shadows">${user + generateTitle[type]}</h1>
 function gifAlert({
-  gif, audio, duration, gifDelay, volume,
+  gif,
+  audio,
+  duration,
+  gifDelay,
+  volume,
+  audioDelay,
+  gifDuration,
 }) {
   queue.add(async () => {
     if (audio) {
       currentAudio = new Audio(audio);
-      currentAudio.play();
       // eslint-disable-next-line no-param-reassign
       currentAudio.volume = volume ? volume / 100 : 1;
+      if (audioDelay) {
+        setTimeout(() => {
+          currentAudio.play();
+        }, audioDelay * 1000);
+      } else {
+        currentAudio.play();
+      }
     }
     if (gif) {
       showGif(gif, gifDelay);
     }
 
-    await wait(duration * 1000 || DEFAULT_DURATION);
+    let waitDuration = duration;
+    if (gifDuration) {
+      waitDuration = gifDuration;
+
+      setTimeout(() => {
+        if (currentAudio) {
+          currentAudio.pause();
+          // eslint-disable-next-line no-param-reassign
+          currentAudio.currentTime = 0;
+        }
+      }, duration);
+    }
+    await wait(waitDuration * 1000 || DEFAULT_DURATION);
 
     if (!queue.isLooping) {
       container.style.opacity = 0;
       container.innerHTML = '';
-      if (currentAudio) {
+      if (currentAudio && !gifDuration) {
         currentAudio.pause();
         // eslint-disable-next-line no-param-reassign
         currentAudio.currentTime = 0;
@@ -246,8 +270,10 @@ const soundCommands = {
   },
   rojao: {
     audio: 'sons/rojao.mp3',
-    // gif: 'gifs/rojao.gif', // TODO
-    duration: 5,
+    gif: 'gifs/rojao.gif',
+    duration: 10,
+    audioDelay: 4.5,
+    gifDuration: 6.9,
     rewardCommand: true,
   },
   moises: {
