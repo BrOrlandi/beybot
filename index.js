@@ -270,10 +270,8 @@ const soundCommands = {
   },
   rojao: {
     audio: 'sons/rojao.mp3',
-    gif: 'gifs/rojao.gif',
-    duration: 10,
-    audioDelay: 4.5,
-    gifDuration: 6.9,
+    // gif: 'gifs/rojao.gif', // TODO find gif with no delay.
+    duration: 5,
     rewardCommand: true,
   },
   moises: {
