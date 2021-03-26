@@ -22,7 +22,7 @@ ComfyJS.onReward = (user, reward, cost) => {
   if (reward === 'Apagar a Luz') {
     ComfyJS.Say('!apagaluz');
     setTimeout(() => {
-      turnLightOffForSeconds(10);
+      turnLightOffForSeconds(15);
     }, 1500);
   }
 
