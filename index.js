@@ -325,6 +325,11 @@ const soundCommands = {
     audio: 'sons/missaoimpossivel.mp3',
     duration: 16,
   },
+  cyberpunk: {
+    audio: 'sons/cyberpunk.mp3',
+    gif: 'gifs/cyberpunk.gif',
+    duration: 6,
+  },
 };
 
 const playSoundCommand = (soundCommandConfig, allowedUser, user) => {

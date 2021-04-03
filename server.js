@@ -28,7 +28,7 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
     !emorreu !teamwork !xfiles !gas !thuglife
     !memefinal !sexy !nogod !aiai !awshit
     !missioncompleted !quepena !berg !moises !surprise
-    !burro !aiqueburro !yeah !missaoimpossivel
+    !burro !aiqueburro !yeah !missaoimpossivel !cyberpunk
     `);
     return;
   }
@@ -116,7 +116,7 @@ const dotKeyShortcutMap1 = {
   71: '!emorreu', // 7
   72: '!ridin', // 8
   73: '!teamwork', // 9
-  75: '!xfiles', // 4
+  75: '!cyberpunk', // 4
   76: '!gas', // 5
   77: '!memefinal', // 6
   79: '!thuglife', // 1
