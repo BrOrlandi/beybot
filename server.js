@@ -7,6 +7,8 @@ ComfyJS.Init(process.env.TWITCHUSER, process.env.OAUTH, 'BrOrlandi');
 let currentShortcutsPage = 0;
 const MAX_PAGES = 2;
 
+let cervejas = 0;
+
 // eslint-disable-next-line no-unused-vars
 ComfyJS.onCommand = (user, command, message, flags, extra) => {
   if (command === 'comandos') {
@@ -16,6 +18,8 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
     !cod
     !sons
     !sonscorrida
+    !cerveja
+    !cervejazerar
     `);
     return;
   }
@@ -51,6 +55,21 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
 
   if (command === 'covid') {
     ComfyJS.Say('/me Pessoal não esqueçam de se proteger da COVID-19 nesta pandemia! Se cuidem!');
+  }
+
+  if (command === 'cerveja') {
+    cervejas += 1;
+    if (cervejas === 1) {
+      ComfyJS.Say('/me Orlandi tomou só 1 cerveja, por enquanto...');
+      return;
+    }
+
+    ComfyJS.Say(`/me Orlandi já tomou ${cervejas} cervejas`);
+  }
+
+  if (command === 'cervejazerar') {
+    cervejas = 0;
+    ComfyJS.Say('/me Contador de Cervejas zerado!');
   }
 
   // console.log(`Nenhum comando: ${command}`);

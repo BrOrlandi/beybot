@@ -31,7 +31,7 @@
     "live-server": "^1.2.1"
   },
   "dependencies": {
-    "comfy.js": "^1.1.6",
+    "comfy.js": "^1.1.10",
     "dotenv": "^8.2.0",
     "iohook": "^0.7.2",
     "node-hue-api": "^4.0.10"
