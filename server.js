@@ -91,7 +91,7 @@ const keyMap0 = {
   3637: '!run', // /
   74: '!stop', // -
   55: '!champions', // *
-  78: '!wasted', // +
+  61009: '!wasted', // Page Down
   82: '!caixaostart', // 0
 };
 
@@ -109,7 +109,7 @@ const dotKeyShortcutMap0 = {
   3637: '!vitoria', // /
   74: '!stop', // -
   55: '!acabou', // *
-  78: '!missioncompleted', // +
+  61009: '!missioncompleted', // Page Down
   82: '!awshit', // 0
 };
 
@@ -127,7 +127,7 @@ const keyMap1 = {
   3637: '!rojao', // /
   74: '!stop', // -
   55: '!champions', // *
-  78: '!wasted', // +
+  61009: '!sexy', // Page Down
   82: '!berg', // 0
 };
 
@@ -145,7 +145,7 @@ const dotKeyShortcutMap1 = {
   3637: '!vitoria', // /
   74: '!stop', // -
   55: '!acabou', // *
-  78: '!sexy', // +
+  61009: '!sexy', // Page Down
   82: '!missaoimpossivel', // 0
 };
 
@@ -174,12 +174,14 @@ const playKeyCommand = (key, commandMap) => {
 
 let usingShortcut = false;
 
+const COMBO_KEY = 78; // +
+
 const registerShortcuts = (normalKeys, comboKeys) => {
   ioHook.unregisterAllShortcuts();
   Object.keys(comboKeys).forEach((key) => {
-    ioHook.registerShortcut([0, key], (keysPressed) => {
+    ioHook.registerShortcut([COMBO_KEY, key], (keysPressed) => {
       usingShortcut = true;
-      playKeyCommand(keysPressed[1], comboKeys);
+      playKeyCommand(keysPressed[0], comboKeys);
     }, () => {
       usingShortcut = false;
     });
@@ -209,7 +211,7 @@ const registerPageShortcuts = () => {
 let lastTime = 0;
 
 ioHook.on('keydown', ({ keycode }) => {
-  if (keycode === 0) {
+  if (keycode === COMBO_KEY) {
     const now = Date.now();
     const diff = now - lastTime;
     if (diff < 250) {
@@ -222,6 +224,8 @@ ioHook.on('keydown', ({ keycode }) => {
     }
     lastTime = now;
   }
+
+  // console.log({ keycode });
 });
 
 registerPageShortcuts();
