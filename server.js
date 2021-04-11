@@ -181,10 +181,10 @@ const registerShortcuts = (normalKeys, comboKeys) => {
   Object.keys(comboKeys).forEach((key) => {
     ioHook.registerShortcut([COMBO_KEY, key], (keysPressed) => {
       usingShortcut = true;
-      if (keysPressed[0] === 78) {
+      if (keysPressed[0] === '78') {
         playKeyCommand(keysPressed[1], comboKeys);
       }
-      if (keysPressed[1] === 78) {
+      if (keysPressed[1] === '78') {
       playKeyCommand(keysPressed[0], comboKeys);
       }
     }, () => {
