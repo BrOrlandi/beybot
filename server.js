@@ -124,7 +124,7 @@ const keyMap1 = {
   80: '!cevaimorre', // 2
   81: '!burro', // 3
   83: '!surprise', // ,
-  3637: '!rojao', // /
+  3637: '!run', // /
   74: '!stop', // -
   55: '!champions', // *
   61009: '!sexy', // Page Down
@@ -185,7 +185,7 @@ const registerShortcuts = (normalKeys, comboKeys) => {
         playKeyCommand(keysPressed[1], comboKeys);
       }
       if (keysPressed[1] === '78') {
-      playKeyCommand(keysPressed[0], comboKeys);
+        playKeyCommand(keysPressed[0], comboKeys);
       }
     }, () => {
       usingShortcut = false;

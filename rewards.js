@@ -19,6 +19,10 @@ ComfyJS.onReward = (user, reward, cost) => {
     ComfyJS.Say('!johncena');
   }
 
+  if (reward === 'Rugido do Rex') {
+    ComfyJS.Say('!rex');
+  }
+
   if (reward === 'Apagar a Luz') {
     ComfyJS.Say('!apagaluz');
     setTimeout(() => {

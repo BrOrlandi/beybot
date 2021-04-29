@@ -330,6 +330,12 @@ const soundCommands = {
     gif: 'gifs/cyberpunk.gif',
     duration: 6,
   },
+  rex: {
+    audio: 'sons/rex.mp3',
+    gif: 'gifs/rex.gif',
+    duration: 6,
+    rewardCommand: true,
+  },
 };
 
 const playSoundCommand = (soundCommandConfig, allowedUser, user) => {
