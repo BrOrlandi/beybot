@@ -33,6 +33,7 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
     !memefinal !sexy !nogod !aiai !awshit
     !missioncompleted !quepena !berg !moises !surprise
     !burro !aiqueburro !yeah !missaoimpossivel !cyberpunk
+    !wee
     `);
     return;
   }

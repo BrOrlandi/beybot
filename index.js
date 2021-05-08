@@ -336,6 +336,10 @@ const soundCommands = {
     duration: 6,
     rewardCommand: true,
   },
+  wee: {
+    audio: 'sons/wee.mp3',
+    duration: 9,
+  },
 };
 
 const playSoundCommand = (soundCommandConfig, allowedUser, user) => {
