@@ -357,6 +357,7 @@ const playSoundCommand = (soundCommandConfig, allowedUser, user) => {
 };
 
 const isAllowedUser = ({ broadcaster, mod }) => mod || broadcaster;
+const isBroadcasterUser = ({ broadcaster }) => broadcaster;
 
 const stopVideo = () => {
   videoContainer.style.opacity = 0;
@@ -400,11 +401,11 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
     stopVideo();
   }
 
-  if (command === 'covid' && isAllowedUser(flags)) {
+  if (command === 'covid' && isBroadcasterUser(flags)) {
     playVideo('./videos/CovidLovers.mp4', 57000);
   }
 
-  if (command === 'videomatik' && isAllowedUser(flags)) {
+  if (command === 'videomatik' && isBroadcasterUser(flags)) {
     playVideo('./videos/videomatik.mp4', 71000, 'Mensagem do patrocinador<br/>Acesse: videomatik.com.br');
   }
 };

@@ -7,7 +7,7 @@ const lightOff = new LightState().on(false);
 const coldLowLight = new LightState()
   .on(true)
   .ct(230)
-  .brightness(40);
+  .brightness(35);
 
 const coldFullLight = new LightState()
   .on(true)
