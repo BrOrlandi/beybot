@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-server": "node server.js",
     "start-rewards": "node rewards.js",
-    "start": "concurrently --kill-others \"npm run start-server\" \"npm run start-rewards\"",
+    "start": "pm2 start",
     "dev": "concurrently --kill-others \"npm run dev-server\" \"npm run dev-rewards\"",
     "dev-server": "nodemon server.js",
     "dev-rewards": "nodemon rewards.js",
@@ -29,12 +29,14 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "live-server": "^1.2.1",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "pm2": "^4.5.6"
   },
   "dependencies": {
     "comfy.js": "^1.1.10",
     "dotenv": "^8.2.0",
     "iohook": "^0.7.2",
+    "logiled": "^1.2.0",
     "node-hue-api": "^4.0.10"
   }
 }
