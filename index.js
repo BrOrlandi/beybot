@@ -365,18 +365,19 @@ const stopVideo = () => {
   }, 1000);
 };
 
-const playVideo = () => {
+const playVideo = (videoUrl, duration, message) => {
   videoContainer.innerHTML = '';
   videoContainer.innerHTML = `
     <video autoplay>
-      <source src="./videos/CovidLovers.mp4" type="video/mp4">
+      <source src="${videoUrl}" type="video/mp4">
     </video>
+    <h1 class="video-message">${message || ''}</h1>
   `;
   videoContainer.style.opacity = 1;
 
   setTimeout(() => {
     stopVideo();
-  }, 57000);
+  }, duration);
 };
 
 ComfyJS.Init(twitchTvHandle);
@@ -400,7 +401,11 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
   }
 
   if (command === 'covid' && isAllowedUser(flags)) {
-    playVideo();
+    playVideo('./videos/CovidLovers.mp4', 57000);
+  }
+
+  if (command === 'videomatik' && isAllowedUser(flags)) {
+    playVideo('./videos/videomatik.mp4', 71000, 'Mensagem do patrocinador<br/>Acesse: videomatik.com.br');
   }
 };
 
@@ -419,7 +424,11 @@ window.command = (command) => {
   }
 
   if (command === 'covid') {
-    playVideo();
+    playVideo('./videos/CovidLovers.mp4', 57000);
+  }
+
+  if (command === 'videomatik') {
+    playVideo('./videos/videomatik.mp4', 71000, 'Mensagem do patrocinador.<br/>Acesse: videomatik.com.br');
   }
 };
 

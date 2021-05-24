@@ -154,8 +154,16 @@ img {
   justify-content: center;
   opacity: 0;
   transition: opacity 200ms ease;
+  flex-direction: column;
 }
 
 #video-container > video {
   height: 480px;
+}
+
+#video-container > .video-message {
+  color: white;
+  background: linear-gradient(147deg, #791508,#af210f 19%,#c22411 39%,#dc432e 64%,#f37f21 89%,#f8ca10);
+  padding: 21px;
+  border-radius: 12px;
 }

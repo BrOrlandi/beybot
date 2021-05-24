@@ -20,6 +20,7 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
     !sonscorrida
     !cerveja
     !cervejazerar
+    !videomatik
     `);
     return;
   }
@@ -56,6 +57,10 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
 
   if (command === 'covid') {
     ComfyJS.Say('/me Pessoal não esqueçam de se proteger da COVID-19 nesta pandemia! Se cuidem!');
+  }
+
+  if (command === 'videomatik') {
+    ComfyJS.Say('/me Videomatik é a plataforma para criação de vídeos animados de forma fácil e rápida. Acesse: https://videomatik.com.br');
   }
 
   if (command === 'cerveja') {
