@@ -49,6 +49,23 @@ async function blinkLightTimes(times) {
   }, 300)
 }
 
+async function baladMode(seconds) {
+  const currentState = await light.getState()
+  await light.setScene('05646401000003e803e800000000646401007803e803e800000000646401014003e803e800000000646401003d03e803e80000000064640100ae03e803e800000000646401011303e803e800000000646401002803e803e80000000064640100f803e803e800000000')
+
+  setTimeout(async () => {
+    if (currentState.mode === Light.COLOR_MODE) {
+      await light.setState({
+        power: true,
+        mode: currentState.mode,
+        color: currentState.color,
+      })
+      return
+    }
+    await light.setState(currentState)
+  }, seconds * 1000)
+}
+
 const startLightApi = async () => {
   await light.connect()
   await light.setColor('#0079b5')
@@ -59,4 +76,5 @@ startLightApi()
 module.exports = {
   turnLightOffForSeconds,
   blinkLightTimes,
+  baladMode,
 }

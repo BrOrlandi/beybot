@@ -1,6 +1,6 @@
 require('dotenv').config()
 const ComfyJS = require('comfy.js')
-const { turnLightOffForSeconds, blinkLightTimes } = require('./lights')
+const { turnLightOffForSeconds, blinkLightTimes, baladMode } = require('./lights')
 
 ComfyJS.Init(process.env.TWITCHUSER, process.env.OAUTH_REWARD, 'BrOrlandi')
 
@@ -34,6 +34,13 @@ ComfyJS.onReward = (user, reward, cost) => {
     ComfyJS.Say('!piscaluz')
     setTimeout(() => {
       blinkLightTimes(6)
+    }, 100)
+  }
+
+  if (reward === 'Modo Balada') {
+    ComfyJS.Say('!modobalada')
+    setTimeout(() => {
+      baladMode(30)
     }, 100)
   }
 }
