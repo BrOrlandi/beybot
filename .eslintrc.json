@@ -13,5 +13,8 @@
     "globals": {
         "ComfyJS": true,
         "Queue": true
+    },
+    "rules": {
+        "semi": ["error", "never"]
     }
 }

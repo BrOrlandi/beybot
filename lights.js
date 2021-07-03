@@ -1,88 +1,62 @@
-const { v3 } = require('node-hue-api');
+const Light = require('tuya-light-api')
 
-const { LightState } = v3.lightStates;
+const { lightId, lightKey } = require('./lightsConfig')
 
-const lightOff = new LightState().on(false);
-
-const coldLowLight = new LightState()
-  .on(true)
-  .ct(230)
-  .brightness(35);
-
-const coldFullLight = new LightState()
-  .on(true)
-  .ct(230)
-  .brightness(100);
-
-const warmFullLight = new LightState()
-  .on(true)
-  .ct(500)
-  .brightness(100);
-
-const DEFAULT_LIGHT_STATE = coldLowLight;
-// const DEFAULT_LIGHT_STATE = coldFullLight;
-
-const USER = process.env.HUE_USER;
-const KEY = process.env.HUE_KEY;
-const HOST = process.env.HUE_BRIDGE_IP;
-
-const LIGHT_ID = 3; // Luz do escritório
-
-let hueApi;
-
-async function setLightDefaultState() {
-  await hueApi.lights.setLightState(LIGHT_ID, DEFAULT_LIGHT_STATE);
-}
-
-async function setLightOff() {
-  await hueApi.lights.setLightState(LIGHT_ID, lightOff);
-}
-
-async function setLightWarmFull() {
-  await hueApi.lights.setLightState(LIGHT_ID, warmFullLight);
-}
-
-async function setupApi() {
-  hueApi = await v3.api.createLocal(HOST).connect(USER, KEY);
-  await setLightDefaultState();
-}
-
-setupApi();
+const light = new Light(lightId, lightKey)
 
 async function turnLightOffForSeconds(seconds) {
-  await setLightOff();
+  await light.turnOff()
 
   setTimeout(async () => {
-    await setLightDefaultState();
-  }, seconds * 1000);
+    await light.turnOn()
+  }, seconds * 1000)
 }
 
 async function blinkLightTimes(times) {
-  let count = 0;
-  let isLightOn = false;
+  let count = 0
+  let isLightOn = false
 
-  await hueApi.lights.setLightState(LIGHT_ID, lightOff);
+  const currentState = await light.getState()
+
+  await light.setState({
+    power: false, mode: Light.WHITE_MODE, brightness: 100, temperature: 1000,
+  })
 
   const interval = setInterval(async () => {
+    if (count === times) {
+      clearInterval(interval)
+      if (currentState.mode === Light.COLOR_MODE) {
+        await light.setState({
+          power: true,
+          mode: currentState.mode,
+          color: currentState.color,
+        })
+        return
+      }
+      await light.setState(currentState)
+    }
+
     if (!isLightOn) {
-      await setLightWarmFull();
+      await light.turnOn()
     }
 
     if (isLightOn) {
-      await setLightOff();
+      await light.turnOff()
     }
 
-    count += 1;
-    isLightOn = !isLightOn;
-    if (count === times) {
-      clearInterval(interval);
-
-      await setLightDefaultState();
-    }
-  }, 1000);
+    isLightOn = !isLightOn
+    count += 1
+  }, 300)
 }
+
+const startLightApi = async () => {
+  await light.connect()
+  await light.setColor('#0079b5')
+}
+
+startLightApi()
 
 module.exports = {
   turnLightOffForSeconds,
   blinkLightTimes,
-};
+}

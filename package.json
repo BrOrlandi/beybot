@@ -37,6 +37,6 @@
     "dotenv": "^8.2.0",
     "iohook": "^0.7.2",
     "logiled": "^1.2.0",
-    "node-hue-api": "^4.0.10"
+    "tuya-light-api": "git+https://github.com/KasselLabs/tuya-light-api.git"
   }
 }

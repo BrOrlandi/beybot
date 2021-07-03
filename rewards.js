@@ -1,39 +1,39 @@
-require('dotenv').config();
-const ComfyJS = require('comfy.js');
-const { turnLightOffForSeconds, blinkLightTimes } = require('./lights');
+require('dotenv').config()
+const ComfyJS = require('comfy.js')
+const { turnLightOffForSeconds, blinkLightTimes } = require('./lights')
 
-ComfyJS.Init(process.env.TWITCHUSER, process.env.OAUTH_REWARD, 'BrOrlandi');
+ComfyJS.Init(process.env.TWITCHUSER, process.env.OAUTH_REWARD, 'BrOrlandi')
 
 ComfyJS.onReward = (user, reward, cost) => {
-  console.log(`${user} redeemed ${reward} for ${cost}`);
+  console.log(`${user} redeemed ${reward} for ${cost}`)
 
   if (reward === 'Rojão MUITO ALTO') {
-    ComfyJS.Say('!rojao');
+    ComfyJS.Say('!rojao')
   }
 
   if (reward === 'Yeaaahh') {
-    ComfyJS.Say('!yeah');
+    ComfyJS.Say('!yeah')
   }
 
   if (reward === 'IT\'S JOHN CENA!') {
-    ComfyJS.Say('!johncena');
+    ComfyJS.Say('!johncena')
   }
 
   if (reward === 'Rugido do Rex') {
-    ComfyJS.Say('!rex');
+    ComfyJS.Say('!rex')
   }
 
   if (reward === 'Apagar a Luz') {
-    ComfyJS.Say('!apagaluz');
+    ComfyJS.Say('!apagaluz')
     setTimeout(() => {
-      turnLightOffForSeconds(15);
-    }, 1500);
+      turnLightOffForSeconds(15)
+    }, 1500)
   }
 
   if (reward === 'Piscar a Luz') {
-    ComfyJS.Say('!piscaluz');
+    ComfyJS.Say('!piscaluz')
     setTimeout(() => {
-      blinkLightTimes(5);
-    }, 100);
+      blinkLightTimes(6)
+    }, 100)
   }
-};
+}
