@@ -40,7 +40,7 @@ ComfyJS.onReward = (user, reward, cost) => {
   if (reward === 'Modo Balada') {
     ComfyJS.Say('!modobalada')
     setTimeout(() => {
-      baladMode(30)
+      baladMode(33)
     }, 100)
   }
 }

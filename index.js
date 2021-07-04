@@ -1,49 +1,49 @@
 /* Config */
 // const twitchTvHandle = 'OrlandiBot';
-const twitchTvHandle = 'BrOrlandi';
-const botName = 'OrlandiBot';
-const DEFAULT_DURATION = 10 * 1000; // 10 seconds
+const twitchTvHandle = 'BrOrlandi'
+const botName = 'OrlandiBot'
+const DEFAULT_DURATION = 10 * 1000 // 10 seconds
 
 /* DOM */
-const container = document.querySelector('.alerts');
-const videoContainer = document.querySelector('#video-container');
+const container = document.querySelector('.alerts')
+const videoContainer = document.querySelector('#video-container')
 
-const queue = new Queue();
-let currentAudio;
-let durationResolve;
+const queue = new Queue()
+let currentAudio
+let durationResolve
 
 // Resolve promise after duration
 const wait = async (duration) => new Promise((resolve) => {
-  durationResolve = resolve;
-  setTimeout(resolve, duration);
-});
+  durationResolve = resolve
+  setTimeout(resolve, duration)
+})
 
 const stopCommand = () => {
-  container.style.opacity = 0;
-  container.innerHTML = '';
+  container.style.opacity = 0
+  container.innerHTML = ''
   if (currentAudio) {
-    currentAudio.pause();
-    currentAudio.currentTime = 0;
+    currentAudio.pause()
+    currentAudio.currentTime = 0
   }
   if (durationResolve) {
-    durationResolve();
+    durationResolve()
   }
-};
+}
 
 const showGif = async (gif, gifDelay) => {
   if (gifDelay) {
-    await wait(gifDelay * 1000);
+    await wait(gifDelay * 1000)
   }
-  const image = new Image();
-  image.src = gif;
+  const image = new Image()
+  image.src = gif
   container.innerHTML = `
     <img src="" />
-  `;
+  `
   container.innerHTML = `
     <img src="${image.src}" />
-  `;
-  container.style.opacity = 1;
-};
+  `
+  container.style.opacity = 1
+}
 
 // <h1 class="text-shadows">${user + generateTitle[type]}</h1>
 function gifAlert({
@@ -57,45 +57,45 @@ function gifAlert({
 }) {
   queue.add(async () => {
     if (audio) {
-      currentAudio = new Audio(audio);
+      currentAudio = new Audio(audio)
       // eslint-disable-next-line no-param-reassign
-      currentAudio.volume = volume ? volume / 100 : 1;
+      currentAudio.volume = volume ? volume / 100 : 1
       if (audioDelay) {
         setTimeout(() => {
-          currentAudio.play();
-        }, audioDelay * 1000);
+          currentAudio.play()
+        }, audioDelay * 1000)
       } else {
-        currentAudio.play();
+        currentAudio.play()
       }
     }
     if (gif) {
-      showGif(gif, gifDelay);
+      showGif(gif, gifDelay)
     }
 
-    let waitDuration = duration;
+    let waitDuration = duration
     if (gifDuration) {
-      waitDuration = gifDuration;
+      waitDuration = gifDuration
 
       setTimeout(() => {
         if (currentAudio) {
-          currentAudio.pause();
+          currentAudio.pause()
           // eslint-disable-next-line no-param-reassign
-          currentAudio.currentTime = 0;
+          currentAudio.currentTime = 0
         }
-      }, duration);
+      }, duration)
     }
-    await wait(waitDuration * 1000 || DEFAULT_DURATION);
+    await wait(waitDuration * 1000 || DEFAULT_DURATION)
 
     if (!queue.isLooping) {
-      container.style.opacity = 0;
-      container.innerHTML = '';
+      container.style.opacity = 0
+      container.innerHTML = ''
       if (currentAudio && !gifDuration) {
-        currentAudio.pause();
+        currentAudio.pause()
         // eslint-disable-next-line no-param-reassign
-        currentAudio.currentTime = 0;
+        currentAudio.currentTime = 0
       }
     }
-  });
+  })
 }
 
 const soundCommands = {
@@ -340,116 +340,123 @@ const soundCommands = {
     audio: 'sons/wee.mp3',
     duration: 9,
   },
-};
+
+  modobalada: {
+    audio: 'sons/balada.mp3',
+    gif: 'gifs/balada.gif',
+    duration: 33,
+    rewardCommand: true,
+  },
+}
 
 const playSoundCommand = (soundCommandConfig, allowedUser, user) => {
-  const { privateCommand, rewardCommand } = soundCommandConfig;
+  const { privateCommand, rewardCommand } = soundCommandConfig
 
   if (privateCommand && !allowedUser) {
-    return;
+    return
   }
 
   if (rewardCommand && user !== twitchTvHandle && user !== botName) {
-    return;
+    return
   }
 
-  gifAlert(soundCommandConfig, allowedUser);
-};
+  gifAlert(soundCommandConfig, allowedUser)
+}
 
-const isAllowedUser = ({ broadcaster, mod }) => mod || broadcaster;
-const isBroadcasterUser = ({ broadcaster }) => broadcaster;
+const isAllowedUser = ({ broadcaster, mod }) => mod || broadcaster
+const isBroadcasterUser = ({ broadcaster }) => broadcaster
 
 const stopVideo = () => {
-  videoContainer.style.opacity = 0;
+  videoContainer.style.opacity = 0
   setTimeout(() => {
-    videoContainer.innerHTML = '';
-  }, 1000);
-};
+    videoContainer.innerHTML = ''
+  }, 1000)
+}
 
 const playVideo = (videoUrl, duration, message) => {
-  videoContainer.innerHTML = '';
+  videoContainer.innerHTML = ''
   videoContainer.innerHTML = `
     <video autoplay>
       <source src="${videoUrl}" type="video/mp4">
     </video>
     <h1 class="video-message">${message || ''}</h1>
-  `;
-  videoContainer.style.opacity = 1;
+  `
+  videoContainer.style.opacity = 1
 
   setTimeout(() => {
-    stopVideo();
-  }, duration);
-};
+    stopVideo()
+  }, duration)
+}
 
-ComfyJS.Init(twitchTvHandle);
+ComfyJS.Init(twitchTvHandle)
 // eslint-disable-next-line no-unused-vars
 ComfyJS.onCommand = (user, command, message, flags, extra) => {
-  console.log(`!${command} was typed in chat`);
-  const soundCommandConfig = soundCommands[command];
+  console.log(`!${command} was typed in chat`)
+  const soundCommandConfig = soundCommands[command]
 
   if (command === 'caixao' && isAllowedUser(flags)) {
-    stopCommand();
+    stopCommand()
   }
 
   if (soundCommandConfig) {
-    playSoundCommand(soundCommandConfig, isAllowedUser(flags), user);
-    return;
+    playSoundCommand(soundCommandConfig, isAllowedUser(flags), user)
+    return
   }
 
   if (command === 'stop' && isAllowedUser(flags)) {
-    stopCommand();
-    stopVideo();
+    stopCommand()
+    stopVideo()
   }
 
   if (command === 'covid' && isBroadcasterUser(flags)) {
-    playVideo('./videos/CovidLovers.mp4', 57000);
+    playVideo('./videos/CovidLovers.mp4', 57000)
   }
 
   if (command === 'videomatik' && isBroadcasterUser(flags)) {
-    playVideo('./videos/videomatik.mp4', 71000, 'Mensagem do patrocinador<br/>Acesse: videomatik.com.br');
+    playVideo('./videos/videomatik.mp4', 71000, 'Mensagem do patrocinador<br/>Acesse: videomatik.com.br')
   }
-};
+}
 
 window.command = (command) => {
-  console.log(`!${command} was called in window`);
-  const soundCommandConfig = soundCommands[command];
+  console.log(`!${command} was called in window`)
+  const soundCommandConfig = soundCommands[command]
 
   if (soundCommandConfig) {
-    playSoundCommand(soundCommandConfig, true);
-    return;
+    playSoundCommand(soundCommandConfig, true)
+    return
   }
 
   if (command === 'stop') {
-    stopCommand();
-    stopVideo();
+    stopCommand()
+    stopVideo()
   }
 
   if (command === 'covid') {
-    playVideo('./videos/CovidLovers.mp4', 57000);
+    playVideo('./videos/CovidLovers.mp4', 57000)
   }
 
   if (command === 'videomatik') {
-    playVideo('./videos/videomatik.mp4', 71000, 'Mensagem do patrocinador.<br/>Acesse: videomatik.com.br');
+    playVideo('./videos/videomatik.mp4', 71000, 'Mensagem do patrocinador.<br/>Acesse: videomatik.com.br')
   }
-};
+}
 
-let lastMessageDate = 0;
-const MINIMUM_BLIP_TIME = 90000;
+let lastMessageDate = 0
+const MINIMUM_BLIP_TIME = 90000
 
 const playBlipChat = () => {
-  const now = Date.now();
-  const diffTime = now - lastMessageDate;
-  lastMessageDate = now;
+  const now = Date.now()
+  const diffTime = now - lastMessageDate
+  lastMessageDate = now
 
   if (diffTime > MINIMUM_BLIP_TIME) {
-    const blipChatAudio = new Audio('sons/blip.mp3');
-    blipChatAudio.play();
+    const blipChatAudio = new Audio('sons/blip.mp3')
+    blipChatAudio.play()
   }
-};
+}
 
 // eslint-disable-next-line no-unused-vars
 ComfyJS.onChat = (user, message, flags, self, extra) => {
-  console.log(`${user}:`, message);
+  console.log(`${user}:`, message)
   if (
     user !== twitchTvHandle
     && user !== botName
@@ -457,6 +464,6 @@ ComfyJS.onChat = (user, message, flags, self, extra) => {
     && user !== 'StreamLabs'
     && user !== 'streamholics'
   ) {
-    playBlipChat();
+    playBlipChat()
   }
-};
+}
