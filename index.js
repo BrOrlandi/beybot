@@ -346,6 +346,7 @@ const soundCommands = {
     gif: 'gifs/balada.gif',
     duration: 33,
     rewardCommand: true,
+    volume: 50,
   },
 }
 
