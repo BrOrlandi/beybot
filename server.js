@@ -21,6 +21,7 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
     !cerveja
     !cervejazerar
     !videomatik
+    !youtube
     `);
     return;
   }
@@ -52,7 +53,7 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
   }
 
   if (command === 'warzone' || command === 'cod') {
-    ComfyJS.Say('/me Me adiciona no Warzone: BrOrlandi#5802032');
+    ComfyJS.Say('/me Me adiciona no Warzone: BrOrlandi#9628529');
   }
 
   if (command === 'covid') {
@@ -76,6 +77,10 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
   if (command === 'cervejazerar') {
     cervejas = 0;
     ComfyJS.Say('/me Contador de Cervejas zerado!');
+  }
+
+  if (command === 'youtube') {
+    ComfyJS.Say('/me Canal no YouTube: https://www.youtube.com/c/BrunoOrlandiTech');
   }
 
   // console.log(`Nenhum comando: ${command}`);

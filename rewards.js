@@ -1,6 +1,6 @@
 require('dotenv').config()
 const ComfyJS = require('comfy.js')
-const { turnLightOffForSeconds, blinkLightTimes, baladMode } = require('./lights')
+const { turnLightOffForSeconds, blinkLightTimes, baladMode, blinkSub, blinkColor } = require('./lights')
 
 ComfyJS.Init(process.env.TWITCHUSER, process.env.OAUTH_REWARD, 'BrOrlandi')
 
@@ -44,3 +44,29 @@ ComfyJS.onReward = (user, reward, cost) => {
     }, 100)
   }
 }
+
+const onSub = () => {
+  console.log('ON SUB CALLED');
+  blinkSub(14)
+}
+
+ComfyJS.onSub(onSub)
+ComfyJS.onResub(onSub)
+ComfyJS.onSubGift(onSub)
+ComfyJS.onSubMysteryGift(onSub)
+ComfyJS.onGiftSubContinue(onSub)
+
+ComfyJS.onRaid(()=> {
+  console.log('ON RAID CALLED');
+  blinkColor('#00ff00',14, 400);
+})
+
+ComfyJS.onHosted(()=> {
+  console.log('ON HOST CALLED');
+  blinkColor('#00ff00',14, 400);
+})
+
+ComfyJS.onCheer(()=> {
+  console.log('ON CHEER CALLED');
+  blinkColor('#ff00ff',8, 500);
+})
