@@ -1,6 +1,7 @@
 require('dotenv').config()
 const ComfyJS = require('comfy.js')
 const { turnLightOffForSeconds, blinkLightTimes, baladMode, blinkSub, blinkColor } = require('./lights')
+const { turnLedOffForSeconds } = require('./magichome')
 
 ComfyJS.Init(process.env.TWITCHUSER, process.env.OAUTH_REWARD, 'BrOrlandi')
 
@@ -27,6 +28,7 @@ ComfyJS.onReward = (user, reward, cost) => {
     ComfyJS.Say('!apagaluz')
     setTimeout(() => {
       turnLightOffForSeconds(15)
+      turnLedOffForSeconds(15)
     }, 1500)
   }
 
@@ -34,6 +36,7 @@ ComfyJS.onReward = (user, reward, cost) => {
     ComfyJS.Say('!piscaluz')
     setTimeout(() => {
       blinkLightTimes(6)
+      turnLedOffForSeconds(5)
     }, 100)
   }
 
@@ -56,17 +59,17 @@ ComfyJS.onSubGift(onSub)
 ComfyJS.onSubMysteryGift(onSub)
 ComfyJS.onGiftSubContinue(onSub)
 
-ComfyJS.onRaid(()=> {
+ComfyJS.onRaid(() => {
   console.log('ON RAID CALLED');
-  blinkColor('#00ff00',14, 400);
+  blinkColor('#00ff00', 14, 400);
 })
 
-ComfyJS.onHosted(()=> {
+ComfyJS.onHosted(() => {
   console.log('ON HOST CALLED');
-  blinkColor('#00ff00',14, 400);
+  blinkColor('#00ff00', 14, 400);
 })
 
-ComfyJS.onCheer(()=> {
+ComfyJS.onCheer(() => {
   console.log('ON CHEER CALLED');
-  blinkColor('#ff00ff',8, 500);
+  blinkColor('#ff00ff', 8, 500);
 })
