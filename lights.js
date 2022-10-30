@@ -1,6 +1,7 @@
 const { Light } = require('tuya-light-api')
 
 const { lightId, lightKey, light2Id, light2Key } = require('./lightsConfig')
+const { turnOnLed } = require('./magichome')
 
 const light = new Light(lightId, lightKey)
 const light2 = new Light(light2Id, light2Key)
@@ -72,7 +73,7 @@ async function blinkSub(times) {
   await light.setColor('#ffff00')
   await light2.setColor('#ffff00')
 
-  setTimeout(()=>{
+  setTimeout(() => {
     const interval = setInterval(async () => {
       if (count === times) {
         clearInterval(interval)
@@ -183,6 +184,7 @@ const startLightApi = async () => {
   await light.setColor('#0079b5')
   await light2.turnOn()
   await light2.setColor('#0079b5')
+  await turnOnLed()
 }
 
 startLightApi()
