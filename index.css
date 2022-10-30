@@ -21,7 +21,7 @@ img {
 }
 
 .alerts {
-  display: grid;
+  /* display: grid; */
   justify-content: center;
   width: 1040px;
   text-align: center;
