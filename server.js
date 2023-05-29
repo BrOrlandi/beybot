@@ -89,26 +89,26 @@ ComfyJS.onCommand = (user, command, message, flags, extra) => {
 const commandsCounters = {};
 
 const keyMap0 = {
-  71: '!caixao', // 7
-  72: '!hmm', // 8
-  73: '!errou', // 9
-  75: '!alert', // 4
-  76: '!jaavisei', // 5
-  77: ['!sad', '!sad2', '!sadnaruto'], // 6
-  79: '!cholamais', // 1
-  80: '!cevaimorre', // 2
-  81: '!tapegandofogo', // 3
-  83: '!finishhim', // ,
-  3637: '!run', // /
+  // 71: '!caixao', // 7
+  // 72: '!hmm', // 8
+  // 73: '!errou', // 9
+  // 75: '!alert', // 4
+  // 76: '!jaavisei', // 5
+  // 77: ['!sad', '!sad2', '!sadnaruto'], // 6
+  // 79: '!cholamais', // 1
+  // 80: '!cevaimorre', // 2
+  // 81: '!tapegandofogo', // 3
+  // 83: '!finishhim', // ,+
+  // 3637: '!run', // /
   74: '!stop', // -
-  55: '!champions', // *
-  61009: '!wasted', // Page Down
-  82: '!caixaostart', // 0
+  // 55: '!champions', // *
+  // 61009: '!wasted', // Page Down
+  // 82: '!caixaostart', // 0
 };
 
 const dotKeyShortcutMap0 = {
   71: '!emorreu', // 7
-  72: '!ridin', // 8
+  72: '!ridin', // 8+
   73: '!teamwork', // 9
   75: '!xfiles', // 4
   76: '!gas', // 5
@@ -120,7 +120,7 @@ const dotKeyShortcutMap0 = {
   3637: '!vitoria', // /
   74: '!stop', // -
   55: '!acabou', // *
-  61009: '!missioncompleted', // Page Down
+  // 61009: '!missioncompleted', // Page Down
   82: '!awshit', // 0
 };
 
@@ -147,14 +147,14 @@ const dotKeyShortcutMap1 = {
   72: '!ridin', // 8
   73: '!teamwork', // 9
   75: '!cyberpunk', // 4
-  76: '!gas', // 5
+  76: '!gas', // 5-+
   77: '!memefinal', // 6
   79: '!thuglife', // 1
   80: '!aiai', // 2
   81: '!aiqueburro', // 3
   83: '!satanas', // ,
   3637: '!vitoria', // /
-  74: '!stop', // -
+  74: '!stop', // -+
   55: '!acabou', // *
   61009: '!sexy', // Page Down
   82: '!missaoimpossivel', // 0
