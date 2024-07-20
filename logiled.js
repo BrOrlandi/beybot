@@ -17,7 +17,7 @@ const changeNumpadLight = (rgb) => {
     73, // 9
     75, // 4
     76, // 5
-    77, // 6
+    77, // 68
     79, // 1
     80, // 2
     81, // 3
@@ -28,7 +28,7 @@ const changeNumpadLight = (rgb) => {
     337, // Page Down
     82, // 0
   ];
-    // logiled.saveCurrentLighting();
+  // logiled.saveCurrentLighting();
   for (let i = 0; i < keymap.length; i += 1) {
     console.log(logiled.KeyName[`${keymap[i]}`]);
     // logiled.setLightingForKeyWithKeyName({

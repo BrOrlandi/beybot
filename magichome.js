@@ -1,6 +1,6 @@
 const { Control } = require('magic-home')
 
-const light = new Control('192.168.15.13')
+const light = new Control('192.168.15.14')
 
 const turnOnLed = async () => {
     await light.setPower(true)
